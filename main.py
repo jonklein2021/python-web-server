@@ -4,7 +4,7 @@
 from socket import *
 
 # set up TCP server with parameters
-serverPort = 12000
+serverPort = 8080
 serverSocket = socket(AF_INET, SOCK_STREAM)
 serverSocket.bind(('', serverPort))
 serverSocket.listen(1)
