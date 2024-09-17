@@ -1,3 +1,6 @@
+# Jon Klein
+# CSE 342 - HW 2
+
 from socket import *
 
 # set up TCP server with parameters
@@ -19,12 +22,7 @@ while True:
     # receive message from client or timeout
     try:
         sentence = connectionSocket.recv(1024).decode()
-        parts = sentence.split('\n')
-        request = parts[0].split(' ')
-        
-        # print("Msg:", sentence)
-        # print("Parts:", parts)
-        # print("Request:", request)
+        request = sentence.split('\n')[0].split(' ')
         
         # verify the request is a HTTP GET request
         if request[0] != "GET":
@@ -33,13 +31,19 @@ while True:
             break # TODO: change this
         
         # determine the requested file; recall that "/" => "index.html"
-        requestedFile = request[1] if request[1] != "/" else "index.html"
-        # print("Requested file:", requestedFile)
+        requestedFile = "static/" + (request[1] if request[1] != "/" else "index.html")
         
-        # TODO: check if file exists and send it back if it does
+        # check if file exists
+        try:
+            with open(requestedFile, 'r') as file:
+                # send response to client
+                response = "HTTP/1.1 200 OK\n\n" + file.read()
+                connectionSocket.send(response.encode())
+        except FileNotFoundError:
+            # send response to client
+            response = "HTTP/1.1 404 Not Found\n\n404 Not Found"
+            connectionSocket.send(response.encode())
         
-        # send response to client
-        connectionSocket.send(sentence.encode())
     except timeout:
         print("Client timed out.")
     connectionSocket.close()
