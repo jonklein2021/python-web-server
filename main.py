@@ -2,6 +2,10 @@
 # CSE 342 - HW 2
 
 from socket import *
+import urllib.request
+
+# get public IP
+publicip = urllib.request.urlopen('https://ident.me').read().decode('utf8')
 
 # set up TCP server with parameters
 serverPort = 8080
@@ -9,7 +13,7 @@ serverSocket = socket(AF_INET, SOCK_STREAM)
 serverSocket.bind(('', serverPort))
 serverSocket.listen(1)
 
-print('Server listening on port', serverPort)
+print(f'Server listening on 127.0.0.1:{serverPort} and {publicip}:{serverPort}')
 
 # loop to keep server running
 while True:
@@ -21,7 +25,7 @@ while True:
     
     # receive message from client or timeout
     try:
-        sentence = connectionSocket.recv(1024).decode()
+        sentence = connectionSocket.recv(1024).decode(errors='ignore')
         request = sentence.split('\n')[0].split(' ')
         
         # verify the request is a HTTP GET request
@@ -31,14 +35,16 @@ while True:
             break # TODO: change this
         
         # determine the requested file; recall that "/" => "index.html"
-        requestedFile = "static/" + (request[1] if request[1] != "/" else "index.html")
+        requestedFile = "static" + (request[1] if request[1] != "/" else "/index.html")
+        
+        print(f"{ip}:{port} requested {requestedFile}")
         
         # check if file exists
         try:
-            with open(requestedFile, 'r') as file:
+            with open(requestedFile, 'rb') as file:
                 # send response to client
-                response = "HTTP/1.1 200 OK\n\n" + file.read()
-                connectionSocket.send(response.encode())
+                response = b"HTTP/1.1 200 OK\n\n" + file.read()
+                connectionSocket.send(response)
         except FileNotFoundError:
             # send response to client
             response = "HTTP/1.1 404 Not Found\n\n404 Not Found"
