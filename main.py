@@ -1,6 +1,7 @@
 # Jon Klein
 # CSE 342 - HW 2
 
+import datetime
 from socket import *
 import urllib.request
 
@@ -12,6 +13,9 @@ serverPort = 8080
 serverSocket = socket(AF_INET, SOCK_STREAM)
 serverSocket.bind(('', serverPort))
 serverSocket.listen(1)
+
+# store logs here
+logs = []
 
 print(f'Server listening on 127.0.0.1:{serverPort} and {publicip}:{serverPort}')
 
@@ -26,6 +30,7 @@ while True:
     # receive message from client or timeout
     try:
         sentence = connectionSocket.recv(1024).decode(errors='ignore')
+        timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         request = sentence.split('\n')[0].split(' ')
         
         # verify the request is a HTTP GET request
@@ -37,7 +42,8 @@ while True:
         # determine the requested file; recall that "/" => "index.html"
         requestedFile = "static" + (request[1] if request[1] != "/" else "/index.html")
         
-        print(f"{ip}:{port} requested {requestedFile}")
+        # append request to logs
+        logs.append(f"[{timestamp}] {ip}:{port} requests {requestedFile}\n")
         
         # check if file exists
         try:
@@ -52,4 +58,10 @@ while True:
         
     except timeout:
         print("Client timed out.")
-    connectionSocket.close()
+    finally:
+        # write logs to log.txt and close connection
+        with open("log.txt", "a") as logfile:
+            logfile.writelines(logs)
+            
+        connectionSocket.close()
+    
