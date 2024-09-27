@@ -1,21 +1,16 @@
-[2024-09-19 10:09:47] 127.0.0.1:53935 requests static/index.html
-[2024-09-19 10:09:47] 127.0.0.1:53935 requests static/index.html
-[2024-09-19 10:09:58] 127.0.0.1:53975 requests static/cats.html
-[2024-09-19 10:09:47] 127.0.0.1:53935 requests static/index.html
-[2024-09-19 10:09:58] 127.0.0.1:53975 requests static/cats.html
-[2024-09-19 10:09:58] 127.0.0.1:53976 requests static/assets/oreo.jpg
-[2024-09-19 10:09:47] 127.0.0.1:53935 requests static/index.html
-[2024-09-19 10:09:58] 127.0.0.1:53975 requests static/cats.html
-[2024-09-19 10:09:58] 127.0.0.1:53976 requests static/assets/oreo.jpg
-[2024-09-19 10:09:59] 127.0.0.1:53977 requests static/assets/close.jpg
-[2024-09-19 10:09:47] 127.0.0.1:53935 requests static/index.html
-[2024-09-19 10:09:58] 127.0.0.1:53975 requests static/cats.html
-[2024-09-19 10:09:58] 127.0.0.1:53976 requests static/assets/oreo.jpg
-[2024-09-19 10:09:59] 127.0.0.1:53977 requests static/assets/close.jpg
-[2024-09-19 10:09:59] 127.0.0.1:53979 requests static/assets/wisp.jpg
-[2024-09-19 10:09:47] 127.0.0.1:53935 requests static/index.html
-[2024-09-19 10:09:58] 127.0.0.1:53975 requests static/cats.html
-[2024-09-19 10:09:58] 127.0.0.1:53976 requests static/assets/oreo.jpg
-[2024-09-19 10:09:59] 127.0.0.1:53977 requests static/assets/close.jpg
-[2024-09-19 10:09:59] 127.0.0.1:53979 requests static/assets/wisp.jpg
-[2024-09-19 10:09:59] 127.0.0.1:53980 requests static/assets/shook.jpg
+Connection from 127.0.0.1:56200
+[2024-09-26 22:48:16] 127.0.0.1:56200 requests static/index.html
+Connection from 127.0.0.1:56327
+[2024-09-26 22:52:14] 127.0.0.1:56327 requests static/index.html
+Connection from 127.0.0.1:56424
+[2024-09-26 22:54:44] 127.0.0.1:56424 requests static/index.html
+Connection from 127.0.0.1:56428
+[2024-09-26 22:54:52] 127.0.0.1:56428 requests static/cats.html
+Connection from 127.0.0.1:56429
+[2024-09-26 22:54:52] 127.0.0.1:56429 requests static/assets/oreo.jpg
+Connection from 127.0.0.1:56430
+[2024-09-26 22:54:52] 127.0.0.1:56430 requests static/assets/close.jpg
+Connection from 127.0.0.1:56431
+[2024-09-26 22:54:52] 127.0.0.1:56431 requests static/assets/shook.jpg
+Connection from 127.0.0.1:56432
+[2024-09-26 22:54:52] 127.0.0.1:56432 requests static/assets/wisp.jpg
